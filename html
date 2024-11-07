@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de 1984</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        #quiz-container {
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #333;
+        }
+
+        .header p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #555;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Juego de 1984</h1>
+        <p>Lengua y Literatura</p>
+        <p>Curso: 4to 1ra ACPI</p>
+        <p>Alumno: Lautaro Cava</p>
+    </div>
+    <div id="quiz-container">
+        <p>Responde a las siguientes preguntas sobre el gobierno de "EL PARTIDO" en el libro *1984*</p>
+        <form id="quiz-form">
+            <div class="question">
+                <p>1. ¿Estás de acuerdo con el método de control del Partido?</p>
+                <label><input type="radio" name="q1" value="agree"> Sí</label>
+                <label><input type="radio" name="q1" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>2. ¿Utilizarías la violencia para controlar una sociedad?</p>
+                <label><input type="radio" name="q2" value="agree"> Sí</label>
+                <label><input type="radio" name="q2" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>3. ¿Crees que este tipo de manipulación se utilizó en el pasado para llegar a un presente mejor?</p>
+                <label><input type="radio" name="q3" value="agree"> Sí</label>
+                <label><input type="radio" name="q3" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>4. ¿Deseas cambiar los sistemas de organización que se utilizan en la actualidad?</p>
+                <label><input type="radio" name="q4" value="agree"> Sí</label>
+                <label><input type="radio" name="q4" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>5. ¿Funcionan los gobiernos democráticos de la actualidad?</p>
+                <label><input type="radio" name="q5" value="agree"> Sí</label>
+                <label><input type="radio" name="q5" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>6. ¿Estás a favor de la manipulación psicológica como técnica de control?</p>
+                <label><input type="radio" name="q6" value="agree"> Sí</label>
+                <label><input type="radio" name="q6" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>7. ¿Crees que puede traer beneficios la utilización de esta técnica en la política?</p>
+                <label><input type="radio" name="q7" value="agree"> Sí</label>
+                <label><input type="radio" name="q7" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>8. ¿Seguirías apoyando a un partido político en el caso de ser consciente que utilizan esta técnica?</p>
+                <label><input type="radio" name="q8" value="agree"> Sí</label>
+                <label><input type="radio" name="q8" value="disagree"> No</label>
+            </div>
+            <button type="button" onclick="submitQuiz()">Ver resultados</button>
+        </form>
+        <div id="result"></div>
+    </div>
+    <script>
+        function submitQuiz() {
+            const form = document.getElementById('quiz-form');
+            const formData = new FormData(form);
+
+            let agreeCount = 0;
+            let totalQuestions = 0;
+
+            // Recorremos las respuestas
+            formData.forEach((value, key) => {
+                if (key === 'q5') {
+                    // Modificamos la lógica para la pregunta 5
+                    if (value === 'disagree') {
+                        agreeCount++; // No estoy de acuerdo con los gobiernos democráticos, estoy de acuerdo con el Partido de 1984
+                    }
+                } else if (value === 'agree') {
+                    agreeCount++;
+                }
+                totalQuestions++;
+            });
+
+            // Calculamos el porcentaje de acuerdo
+            const agreePercentage = (agreeCount / totalQuestions) * 100;
+            const resultContainer = document.getElementById('result');
+            
+            if (agreePercentage >= 50) {
+                resultContainer.textContent = `Estás ${agreePercentage.toFixed(2)}% de acuerdo con el gobierno en *1984*.`;
+            } else {
+                resultContainer.textContent = `Estás en desacuerdo con el gobierno en *1984* con un porcentaje del ${agreePercentage.toFixed(2)}%.`;
+            }
+        }
+    </script>
+</body>
+</html>
+
