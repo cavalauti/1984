@@ -55,7 +55,7 @@
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
-            cursor: pointer;
+            cursor: pointer; 
             margin-top: 10px;
         }
 
@@ -90,12 +90,7 @@
                 <label><input type="radio" name="q2" value="disagree"> No</label>
             </div>
             <div class="question">
-                <p>3. ¿Crees que este tipo de manipulación se utilizó en el pasado para llegar a un presente mejor?</p>
-                <label><input type="radio" name="q3" value="agree"> Sí</label>
-                <label><input type="radio" name="q3" value="disagree"> No</label>
-            </div>
-            <div class="question">
-                <p>4. ¿Deseas cambiar los sistemas de organización que se utilizan en la actualidad?</p>
+                <p>4. ¿Deseas cambiar los sistemas de organización social que se utilizan en la actualidad?</p>
                 <label><input type="radio" name="q4" value="agree"> Sí</label>
                 <label><input type="radio" name="q4" value="disagree"> No</label>
             </div>
@@ -105,19 +100,34 @@
                 <label><input type="radio" name="q5" value="disagree"> No</label>
             </div>
             <div class="question">
-                <p>6. ¿Estás a favor de la manipulación psicológica como técnica de control?</p>
-                <label><input type="radio" name="q6" value="agree"> Sí</label>
-                <label><input type="radio" name="q6" value="disagree"> No</label>
+                <p>6. ¿Crees que es necesario dividir el poder para que no esté centralizado?</p>
+                <label><input type="radio" name="q6" value="disagree"> Sí</label>
+                <label><input type="radio" name="q6" value="agree"> No</label>
             </div>
             <div class="question">
-                <p>7. ¿Crees que puede traer beneficios la utilización de esta técnica en la política?</p>
+                <p>7. ¿Estás a favor de la manipulación psicológica como técnica de control social?</p>
                 <label><input type="radio" name="q7" value="agree"> Sí</label>
                 <label><input type="radio" name="q7" value="disagree"> No</label>
             </div>
             <div class="question">
-                <p>8. ¿Seguirías apoyando a un partido político en el caso de ser consciente que utilizan esta técnica?</p>
+                <p>8. ¿Crees que puede traer beneficios la utilización de esta técnica en la política?</p>
                 <label><input type="radio" name="q8" value="agree"> Sí</label>
                 <label><input type="radio" name="q8" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>3. ¿Crees que este tipo de manipulación se utilizó en el pasado para llegar a un presente mejor?</p>
+                <label><input type="radio" name="q3" value="agree"> Sí</label>
+                <label><input type="radio" name="q3" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>9. ¿Seguirías apoyando a un partido político en el caso de ser consciente que utilizan esta técnica?</p>
+                <label><input type="radio" name="q9" value="agree"> Sí</label>
+                <label><input type="radio" name="q9" value="disagree"> No</label>
+            </div>
+            <div class="question">
+                <p>10. ¿A menudo te revelas y expresas tu inconformidad cuando no coincides con las ideas de otra persona o grupo social?</p>
+                <label><input type="radio" name="q10" value="disagree"> Sí</label>
+                <label><input type="radio" name="q10" value="agree"> No</label>
             </div>
             <button type="button" onclick="submitQuiz()">Ver resultados</button>
         </form>
@@ -134,9 +144,8 @@
             // Recorremos las respuestas
             formData.forEach((value, key) => {
                 if (key === 'q5') {
-                    // Modificamos la lógica para la pregunta 5
                     if (value === 'disagree') {
-                        agreeCount++; // No estoy de acuerdo con los gobiernos democráticos, estoy de acuerdo con el Partido de 1984
+                        agreeCount++;
                     }
                 } else if (value === 'agree') {
                     agreeCount++;
@@ -144,7 +153,6 @@
                 totalQuestions++;
             });
 
-            // Calculamos el porcentaje de acuerdo
             const agreePercentage = (agreeCount / totalQuestions) * 100;
             const resultContainer = document.getElementById('result');
             
@@ -157,4 +165,3 @@
     </script>
 </body>
 </html>
-
